@@ -41,6 +41,38 @@ class Test(InDirTest):
         ax.legend()
         fig.tight_layout()
         fig.savefig("plot.pdf")
+    
+    def test_all_C_major_triads(self):
+        n=self.neck
+        fig=plt.figure(figsize=(20,3))
+        ax=fig.subplots(1,1)
+        ax.set_aspect(1)
+        ax.set_axis_off()
+        n.plot_neck(ax)
+        fig.tight_layout()
+        fig.savefig("plot_0.pdf")#, bbox_inches='tight')
+
+        fig=plt.figure(figsize=(20,3))
+        ax=fig.subplots(1,1)
+        ax.set_aspect(1)
+        ax.set_axis_off()
+        n.plot_neck(ax)
+        
+        cs={    
+            (5,8)  : "c'",
+            (4,3)  : "c'",
+            (3,10) : "c''",
+            (2,5)  : "c''",
+            (1,1)  : "c''",
+            (0,8)  : "c'''"
+        }
+        
+        for (st,f),label in cs.items():
+            #st,f=combi
+            n.plot_note(ax=ax,f=f,st=st,txt=label,color="red")
+        ax.legend()
+        fig.tight_layout()
+        fig.savefig("plot_0.pdf")
 
     def test_all_Cs(self):
         n=self.neck
